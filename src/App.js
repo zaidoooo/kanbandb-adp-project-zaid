@@ -1,8 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+// @ts-ignore
 import KanbanDB from 'kanbandb';
+import KanbanList from './components/kanbanlist';
+import './App.css';
+import kanbanModel from './model/kanbanModel';
+import { organizeKanban } from './components/organizeKanban';
 
 async function initialize() {
   /**
@@ -13,11 +15,11 @@ async function initialize() {
    * This code (initialize function) is for demonstration only.
    */
   const instance = await KanbanDB.connect(null);
-  instance.addCard({
-    name: 'Test',
-    description: 'Test',
-    status: 'IN_PROGRESS'
-  });
+  for (let i = 0; i < kanbanModel.length; i++) {
+    // @ts-ignore
+    instance.addCard(kanbanModel[i]);
+  }
+
 }
 
 function App() {
@@ -26,20 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <KanbanList />
     </div>
   );
 }

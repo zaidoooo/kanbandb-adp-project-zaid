@@ -100,6 +100,7 @@ function Kanbanlist() {
                     let b = organizeKanban(el)
                     setKanban(b)
                 })
+                setEditMode({edit: false, id: ''})
             }
         })
     }
@@ -146,10 +147,10 @@ function Kanbanlist() {
                                                             <div>{item.name}:</div> 
                                                             {editMode.edit && editMode.id === item.id ? 
                                                             <div>
-                                                                <textarea onChange={(e) => setDescription(e.target.value)} defaultValue={item.description}></textarea>
+                                                                <textarea css={css`margin-top: 5px;`} onChange={(e) => setDescription(e.target.value)} defaultValue={item.description}></textarea>
                                                                 <div>
-                                                                    <button onClick={() => updateCard(item.id, description)}>Save</button> 
-                                                                    <button onClick={() => setEditMode({edit: false, id: ''})}>Cancel</button> 
+                                                                    <button css={css`margin-top: 5px;border:0;border-radius: 8px;padding: 10px;`} onClick={() => updateCard(item.id, description)}>Save</button> 
+                                                                    <button css={css`margin-left: 10px; margin-top: 5px;border:0;border-radius: 8px;padding: 10px;`} onClick={() => setEditMode({edit: false, id: ''})}>Cancel</button> 
                                                                 </div>
                                                             </div>
                                                             : 

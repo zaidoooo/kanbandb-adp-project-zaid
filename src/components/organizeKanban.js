@@ -1,6 +1,7 @@
 import initalData from '../model/initalDS'
 
 export function organizeKanban(data) {
+    console.log(data)
     const a = data.sort((a,b) => a.status.localeCompare(b.status)).reverse().reduce((r, a) => {
         r[a.status] = r[a.status] || [];
         r[a.status].push(a)
